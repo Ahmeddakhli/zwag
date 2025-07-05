@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\MatchController;
 use App\Http\Controllers\Api\MessageController;
@@ -32,7 +33,13 @@ Route::prefix('v1')->group(function () {
     
     // Authentication routes
     Route::prefix('auth')->group(function () {
-        Route::post('register', [AuthController::class, 'register']);
+        // Registration
+        Route::post('register', [RegisterController::class, 'register']);
+        Route::get('registration-config', [RegisterController::class, 'getRegistrationConfig']);
+        Route::post('check-user', [RegisterController::class, 'checkUser']);
+        Route::post('check-password-strength', [RegisterController::class, 'checkPasswordStrength']);
+        
+        // Login and other auth
         Route::post('login', [AuthController::class, 'login']);
         Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
         Route::post('reset-password', [AuthController::class, 'resetPassword']);
