@@ -43,7 +43,8 @@ class AppServiceProvider extends ServiceProvider
         //     }
         // }
 
-
+        // app()->setLocale(request()->header('Accept-Language', 'en'));
+ app()->setLocale('ar');
         $activeTemplate = activeTemplate();
         $viewShare['activeTemplate'] = $activeTemplate;
         $viewShare['activeTemplateTrue'] = activeTemplate(true);

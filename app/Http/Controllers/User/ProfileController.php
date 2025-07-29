@@ -74,31 +74,32 @@ class ProfileController extends Controller
             'per_zip'             => 'nullable',
             'per_city'            => 'required'
         ];
-        $messages = [
-            'firstname.required'           => 'First name is required',
-            'lastname.required'            => 'Last name is required',
-            'birth_date.required'          => 'Birth date is required',
-            'birth_date.before'            => 'Birth date can\'t be greater than today',
-            'religion.required'            => 'Religion is required',
-            'gender.required'              => 'Gender field is required',
-            'gender.in:m,f'                => 'Gender should be male or female only',
-            'profession.required'          => 'Profession field is required',
-            'profession.string'            => 'Profession should be string',
-            'financial_condition.required' => 'Financial condition field is required',
-            'financial_condition.string'   => 'Financial condition should be string',
-            'smoking_status.required'      => 'Smoking Habits field is required',
-            'smoking_status.in'            => 'Smoking Habits should be in 0 or 1',
-            'drinking_status.required'     => 'Drinking status field is required',
-            'drinking_status.in'           => 'Drinking status should be in 0 or 1',
-            'profession.*.string'          => 'Profession should be string',
-            'language.required'            => 'Language field is required',
-            'language.*.string'            => 'Language should be string',
-            'pre_city.required'            => 'Present city field is required',
-            'per_country.required'         => 'Permanent country field is required',
-            'per_city.required'            => 'Permanent city field is required'
-        ];
+        // $messages = [
+        //     'firstname.required'           => 'First name is required',
+        //     'lastname.required'            => 'Last name is required',
+        //     'birth_date.required'          => 'Birth date is required',
+        //     'birth_date.before'            => 'Birth date can\'t be greater than today',
+        //     'religion.required'            => 'Religion is required',
+        //     'gender.required'              => 'Gender field is required',
+        //     'gender.in:m,f'                => 'Gender should be male or female only',
+        //     'profession.required'          => 'Profession field is required',
+        //     'profession.string'            => 'Profession should be string',
+        //     'financial_condition.required' => 'Financial condition field is required',
+        //     'financial_condition.string'   => 'Financial condition should be string',
+        //     'smoking_status.required'      => 'Smoking Habits field is required',
+        //     'smoking_status.in'            => 'Smoking Habits should be in 0 or 1',
+        //     'drinking_status.required'     => 'Drinking status field is required',
+        //     'drinking_status.in'           => 'Drinking status should be in 0 or 1',
+        //     'profession.*.string'          => 'Profession should be string',
+        //     'language.required'            => 'Language field is required',
+        //     'language.*.string'            => 'Language should be string',
+        //     'pre_city.required'            => 'Present city field is required',
+        //     'per_country.required'         => 'Permanent country field is required',
+        //     'per_city.required'            => 'Permanent city field is required'
+        // ];
 
-        $request->validate($rules, $messages);
+        // $request->validate($rules, $messages);
+        $request->validate($rules);
 
 
 

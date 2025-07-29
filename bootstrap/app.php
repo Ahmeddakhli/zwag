@@ -19,12 +19,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        commands: __DIR__.'/../routes/console.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
-        using:function(){
-            Route::namespace('App\Http\Controllers')->middleware([VugiChugi::mdNm()])->group(function(){
+        using: function () {
+            Route::namespace('App\Http\Controllers')->middleware([VugiChugi::mdNm()])->group(function () {
                 Route::prefix('api')
-                    ->middleware(['api','maintenance'])
+                    ->middleware(['api', 'maintenance'])
                     ->group(base_path('routes/api.php'));
                 Route::middleware(['web'])
                     ->namespace('Admin')
@@ -32,20 +32,24 @@ return Application::configure(basePath: dirname(__DIR__))
                     ->name('admin.')
                     ->group(base_path('routes/admin.php'));
 
-                    Route::middleware(['web','maintenance'])
+                Route::middleware(['web', 'maintenance'])
                     ->namespace('Gateway')
                     ->prefix('ipn')
                     ->name('ipn.')
                     ->group(base_path('routes/ipn.php'));
 
-                Route::middleware(['web','maintenance'])->prefix('user')->group(base_path('routes/user.php'));
-                Route::middleware(['web','maintenance'])->group(base_path('routes/web.php'));
-
+                Route::middleware(['web', 'maintenance'])->prefix('user')->group(base_path('routes/user.php'));
+                Route::middleware(['web', 'maintenance'])->group(base_path('routes/web.php'));
+            });
+            Route::namespace('App\Http\Controllers\Api')->middleware([VugiChugi::mdNm()])->group(function () {
+                Route::prefix('api')
+                    ->middleware(['api', 'maintenance'])
+                    ->group(base_path('routes/api/user.php'));
             });
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->group('web',[
+        $middleware->group('web', [
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
@@ -54,7 +58,11 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\LanguageMiddleware::class,
             \App\Http\Middleware\ActiveTemplateMiddleware::class,
         ]);
-
+        
+     $middleware->group('api', [
+      
+            \App\Http\Middleware\LanguageMiddleware::class,
+        ]);
         $middleware->alias([
             'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
             'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -78,7 +86,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->validateCsrfTokens(
-            except: ['user/deposit','ipn*']
+            except: ['user/deposit', 'ipn*']
         );
     })
     ->withExceptions(function (Exceptions $exceptions) {

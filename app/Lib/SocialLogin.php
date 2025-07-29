@@ -124,7 +124,7 @@ class SocialLogin
         $newUser->provider_id = $user->id;
 
         $newUser->email = $user->email;
-
+        $newUser->gender    = $user->gender;
         $newUser->password = Hash::make($password);
         $newUser->firstname = $firstName;
         $newUser->lastname = $lastName;

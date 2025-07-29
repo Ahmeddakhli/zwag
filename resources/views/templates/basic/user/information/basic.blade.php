@@ -17,7 +17,7 @@
                             <div class="row gy-4">
                                 <div class="col-sm-6">
                                     <div class="input--group">
-                                        <select class="form-select form--control form-control" id="looking_for" name="looking_for" required>
+                                        <select class="form-select form--control form-control" id="looking_for" name="" required>
                                             <option value="">@lang('Select One')</option>
                                             <option value="1" @selected(old('looking_for') == 1)>@lang('Bridegroom')</option>
                                             <option value="2" @selected(old('looking_for') == 2)>@lang('Bride')</option>

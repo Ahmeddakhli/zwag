@@ -2,10 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class MaritalStatus extends Model
 {
-    use HasFactory;
+    use HasTranslations;
+
+    // Define which attributes should be translatable
+    public $translatable = ['title'];
+    
+    protected $fillable = ['title'];
+    
+    protected $casts = [
+        'title' => 'array',
+    ];
 }
